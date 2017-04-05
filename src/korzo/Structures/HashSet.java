@@ -46,6 +46,7 @@ public class HashSet implements HashSetInterface{
 		//ll[0] = newv;
 		
 		System.out.println(ll.length);
+		
 		System.out.println(ll[0].getSize());
 		
 		
