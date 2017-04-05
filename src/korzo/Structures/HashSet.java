@@ -2,7 +2,7 @@ package korzo.Structures;
 
 public class HashSet implements HashSetInterface{
 	
-	private int base = 8;
+	private int base = 256;
 	private LinkedList[] ll;
 	
 	public int hash(Object ob){
@@ -17,57 +17,52 @@ public class HashSet implements HashSetInterface{
 			ret = ret / 2;
 		} 
 		return ret;
-	}	
-	
-	public HashSet(){
-		LinkedList[] ll = new LinkedList[base];
-		System.out.println("default");
-		for (int i=0; i < this.base; i++)
-			ll[i] = new LinkedList();
 	}
+	
+	private void InitializeHashSet(){
+		LinkedList[] initArray = new LinkedList[base];
+		for (int i=0; i < this.base; i++)
+			initArray[i] = new LinkedList();
+		this.ll = initArray;
+	}
+	public HashSet(){
+		InitializeHashSet();
+	}
+	
 	
 	public HashSet(int base){
 		this.base = base;
-		
-		LinkedList[] ll = new LinkedList[base];
-		System.out.println("base");
+		InitializeHashSet();
 	}
 	
 	public void add(Object t){
 		
 		int i = hash(t);
 		
-		//this.ll[0] = new LinkedList();
+		int j = 0;
+
+		while (j <= ll[i].getSize())
+			if (ll[i].get(j).equals(t))
+				return;
 		
-		//LinkedList newv = new LinkedList();
-		
-		//System.out.println(newv.getSize());
-		
-		//ll[0] = newv;
-		
-		System.out.println(ll.length);
-		
-		System.out.println(ll[0].getSize());
-		
-		
-//		
-//		int j = 0;
-//		System.out.println(ll[i].getSize());
-//		while (j <= ll[i].getSize())
-//			if (ll[i].get(j).equals(t))
-//				return;
-//		
-//		ll[i].add(t);
+		ll[i].add(t);
 		
 	};
 	
 	public boolean contains(Object t){
-		return false;
+		int i = hash(t);
+		return this.ll[i].contains(t);
 	};
 	
-	public Object remove(Object t){
-		return new Object();
-	};
+	public void remove(Object t) {
+		int i = hash(t);
+		
+		System.out.println(this.ll[i].getSize() + " " + this.ll[i].int_contains(t));
+		
+		this.ll[i].remove(this.ll[i].int_contains(t));
+		
+		System.out.println(this.ll[i].getSize() + " " + this.ll[i].int_contains(t));
+	}	
 	
 	
 	public static void main(String[] args){
@@ -75,9 +70,16 @@ public class HashSet implements HashSetInterface{
 		HashSet h = new HashSet();
 		
 		h.add("123");
+
+		
+		System.out.println(h.contains("123"));
+		h.remove(123);
+		System.out.println(h.contains("123"));
 		
 		
 		
 	}
+
+
 
 }

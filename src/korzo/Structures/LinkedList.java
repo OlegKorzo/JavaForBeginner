@@ -18,7 +18,6 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 		this.node = new Node();
 		this.last = new Node();
 		this.size = -1;
-		System.out.println("LinkedList()");
 	}	
 
 	public void add(Object t){
@@ -38,15 +37,10 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 	
 	public Object get(int index){
 		Node tmp = new Node(this.node);
-		
-		tmp = this.node;
+
 		
 		int i = 0;
-		//System.out.println(this.node.getIndex());
-		
-
 		while (i <= this.size ) {
-			//System.out.println(tmp.getValue());
 			if (index == i) {
 				return tmp.getValue();
 
@@ -60,61 +54,52 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 	
 	
 	public boolean contains(Object t){
-		Node tmp = new Node();
 		
-		tmp = this.node;
+		return int_contains(t) == -1 ? true : false;
+	}
+	
+	public int int_contains(Object t){
 		
+		Node tmp = new Node(this.node);
 		int i = 0;
 		
-		
 		while (i <= this.size) {
-			if (t == tmp.getValue())
-				return true;
+			if (tmp.getValue().equals(t)){
+				System.out.println("found " + i);
+				return i;
+			}
 			tmp = tmp.getNode();
 			i++;
 		}
-		
-		return false;
-		
+		return -1;
 	}
 	
 	public Object remove(int index){
 		
 		if (this.size < 0) return null;
-		
 		if (index == 0){
-			Object t = new Object();
-			t = this.node.getValue();
 			
+			Object t = this.node.getValue();
 			this.node = this.node.getNode();
 			
 			size--;
 			return t;
 		}
 
-		
-		
 		Node cur  = new Node(this.node);
 		
-		
-		//copy = this.node;
 		cur = this.node;
 		int i = 0;
 		
 		while (i <= this.size) {
-			
 			if (i == index - 1){
-
 				Object t = new Object();
 				t = cur.getNode().getValue();
-				
 				cur.setNode(cur.getNode().getNode());
-				
 				
 				size--;
 				return t;
 			}
-
 			cur = cur.getNode();
 			i++;
 		}
@@ -122,16 +107,16 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 		return null;
 	}
 	
+	
 	public int getSize(){
 		return this.size;
 	}
 	
-/*	
+	
 	public Iterator iterator() {
 		Iterator iter = new Iterator() {
 			private int current = -1;
 	
-			
 			@Override
 			public boolean hasNext() {
 				return current < getSize();
@@ -151,7 +136,7 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 		};
 		return iter;
 	}
-*/
+
 	@Override
 	public String toString(){
 		String s = "";
@@ -194,6 +179,7 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 		
 		l.add("000");
 		
+		System.out.println("contains 111: " + l.contains(new String("111")));
 		System.out.println("was deleted " + del);
 		System.out.println("size: " + l.getSize() + "\r");
 /*		
@@ -201,19 +187,13 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 			System.out.println(l.get(i));
 		}
 */		
-/*
+
 		Iterator it = l.iterator();
 		
 		while(it.hasNext()){
 			System.out.println(it.next().toString());			
 		}
 		
-		it = l.iterator();
-		
-		while(it.hasNext()){
-			System.out.println(it.next().toString());			
-		}
-*/		
 	
 	}
 

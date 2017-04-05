@@ -6,6 +6,6 @@ public interface HashSetInterface {
 	
 	public boolean contains(Object t);
 	
-	public Object remove(Object t);
+	public void remove(Object t);
 
 }
