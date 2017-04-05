@@ -34,7 +34,7 @@ public class HashSet implements HashSetInterface{
 	}
 	
 	public void add(Object t){
-		//int i = hash(t);
+		int i = hash(t);
 		
 		//this.ll[0] = new LinkedList();
 		
