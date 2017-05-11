@@ -41,7 +41,7 @@ public class HashSet implements HashSetInterface{
 		
 		int j = 0;
 
-		while (j <= ll[i].getSize())
+		while (j < ll[i].getSize())
 			if (ll[i].get(j).equals(t))
 				return;
 		
@@ -57,11 +57,8 @@ public class HashSet implements HashSetInterface{
 	public void remove(Object t) {
 		int i = hash(t);
 		
-		System.out.println(this.ll[i].getSize() + " " + this.ll[i].int_contains(t));
-		
 		this.ll[i].remove(this.ll[i].int_contains(t));
 		
-		System.out.println(this.ll[i].getSize() + " " + this.ll[i].int_contains(t));
 	}	
 	
 	
@@ -72,9 +69,15 @@ public class HashSet implements HashSetInterface{
 		h.add("123");
 
 		
+		System.out.println("found 123? " + h.contains("123"));
+		System.out.println("found 124? " + h.contains("124"));
+		h.remove("123");
+		h.add("124");
+		h.add("125");
 		System.out.println(h.contains("123"));
-		h.remove(123);
-		System.out.println(h.contains("123"));
+		System.out.println(h.contains("124"));
+		System.out.println(h.contains("125"));
+		System.out.println(h.contains("126"));
 		
 		
 		
