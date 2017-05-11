@@ -36,8 +36,12 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 	}
 	
 	public Object get(int index){
+		
+		if (size == 0) throw new Error("List is empty");
+		if (index < 0) throw new Error("Asked index less then 0");
+		if (index > this.size) throw new Error("Asked index greater than List size");
+		
 		Node tmp = new Node(this.node);
-
 		
 		int i = 0;
 		while (i < this.size ) {
@@ -49,7 +53,9 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 			i++;
 		}
 			
-		return new String("error");
+		if (index > this.size) throw new Error("Asked index greater than List size. That was found after checking the whole list.");
+		
+		return null;
 	}
 	
 	
@@ -169,7 +175,7 @@ public class LinkedList implements PLinkedList/*, Iterable*/{
 		l.add("333");
 		l.add("444");
 		
-		
+		System.out.println(l.get(0));
 		
 		System.out.println("size: " + l.getSize());
 		
